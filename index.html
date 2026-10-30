@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeStream - Web Player: Music for Everyone</title>
+    <link rel="icon" type="image/svg+xml" href="vibestream-icon.svg">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="spotify-app">
+        <!-- ================= LEFT SIDEBAR ================= -->
+        <aside class="sidebar">
+            <!-- Navigation Box -->
+            <div class="nav-box">
+                <div class="spotify-logo" id="logoHomeBtn" title="VibeStream Home">
+                    <img src="vibestream-logo.svg" alt="VibeStream" class="brand-logo-img">
+                </div>
+                <ul class="nav-links">
+                    <li class="active" id="navHome">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Home</span>
+                    </li>
+                    <li id="navSearch">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span>Search</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Library Box -->
+            <div class="library-box">
+                <div class="library-header">
+                    <div class="library-title" id="navLibrary">
+                        <i class="fa-solid fa-lines-leaning"></i>
+                        <span>Your Library</span>
+                    </div>
+                    <div class="library-actions">
+                        <button title="Create playlist" class="icon-btn" id="createPlaylistBtn"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+
+                <!-- Category Filters in Sidebar -->
+                <div class="library-chips">
+                    <span class="chip active" data-filter="all">All (539)</span>
+                    <span class="chip" data-filter="arijit">Arijit Singh</span>
+                    <span class="chip" data-filter="hindi">Hindi</span>
+                    <span class="chip" data-filter="english">English</span>
+                    <span class="chip" data-filter="punjabi">Punjabi</span>
+                    <span class="chip" data-filter="haryanvi">Haryanvi</span>
+                </div>
+
+                <div class="playlist-list">
+                    <div class="playlist-item" data-filter="liked" id="sidebarLikedPlaylist">
+                        <div class="playlist-thumb liked-thumb">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <div class="playlist-meta">
+                            <span class="name">Liked Songs</span>
+                            <span class="sub" id="likedCountSub">Playlist • 0 songs</span>
+                        </div>
+                    </div>
+
+                    <div class="playlist-item" data-filter="arijit">
+                        <img src="covers/1.svg" class="playlist-thumb" alt="Arijit">
+                        <div class="playlist-meta">
+                            <span class="name">Arijit Singh Mega Hits</span>
+                            <span class="sub">60 Songs • Romantic & Soul</span>
+                        </div>
+                    </div>
+
+                    <div class="playlist-item" data-filter="hindi">
+                        <img src="covers/6.svg" class="playlist-thumb" alt="Bollywood">
+                        <div class="playlist-meta">
+                            <span class="name">Bollywood Blockbusters</span>
+                            <span class="sub">100 Songs • Hindi Hits</span>
+                        </div>
+                    </div>
+
+                    <div class="playlist-item" data-filter="english">
+                        <img src="covers/5.svg" class="playlist-thumb" alt="English">
+                        <div class="playlist-meta">
+                            <span class="name">Global Top Hits</span>
+                            <span class="sub">110 Songs • Pop & EDM</span>
+                        </div>
+                    </div>
+
+                    <div class="playlist-item" data-filter="punjabi">
+                        <img src="covers/7.svg" class="playlist-thumb" alt="Punjabi">
+                        <div class="playlist-meta">
+                            <span class="name">Punjabi Bangers</span>
+                            <span class="sub">100 Songs • Bhangra & Hip Hop</span>
+                        </div>
+                    </div>
+
+                    <div class="playlist-item" data-filter="haryanvi">
+                        <img src="covers/2.svg" class="playlist-thumb" alt="Haryanvi">
+                        <div class="playlist-meta">
+                            <span class="name">Haryanvi Viral Hits</span>
+                            <span class="sub">80 Songs • Desi Folk & Rap</span>
+                        </div>
+                    </div>
+
+                    <div class="playlist-item" data-filter="ncs">
+                        <img src="covers/3.svg" class="playlist-thumb" alt="EDM">
+                        <div class="playlist-meta">
+                            <span class="name">EDM, Lofi & Gaming</span>
+                            <span class="sub">89 Songs • Electronic Chill</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="main-content">
+            <!-- Top App Bar -->
+            <header class="top-bar">
+                <div class="top-left-group">
+                    <div class="nav-chevrons">
+                        <button class="round-btn chevron" id="historyBack" title="Back"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="round-btn chevron" id="historyForward" title="Forward"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+
+                    <!-- Search Bar in Header -->
+                    <div class="search-box-header" id="searchBoxHeader">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="searchInput" placeholder="What do you want to play? (Search 539 songs by title, artist, or language)..." autocomplete="off">
+                        <button class="clear-search-btn" id="clearSearchBtn" title="Clear search"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+
+                <div class="user-actions">
+                    <div class="badge-deploy"><i class="fa-solid fa-bolt"></i> Deploy Ready</div>
+                    <div class="profile-pill">
+                        <div class="profile-avatar"><i class="fa-solid fa-user"></i></div>
+                        <span class="profile-name">Parth</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Scrollable Content -->
+            <div class="content-scroll" id="contentScroll">
+                <!-- Search Results Banner (Shown when searching) -->
+                <div class="search-results-banner" id="searchResultsBanner" style="display: none;">
+                    <h2 id="searchResultsTitle">Search Results</h2>
+                    <span id="searchResultsCount">0 songs found</span>
+                </div>
+
+                <!-- Default Home View (Hidden when searching) -->
+                <div id="homeView">
+                    <!-- Greeting -->
+                    <div class="greeting-row">
+                        <h1 class="section-greeting" id="greeting">Good afternoon, Parth</h1>
+                        <div class="stats-badge"><i class="fa-solid fa-music"></i> 539 Full Songs</div>
+                    </div>
+
+                    <!-- Main Filter Chips Bar -->
+                    <div class="main-category-bar">
+                        <button class="category-btn active" data-filter="all">All Songs</button>
+                        <button class="category-btn" data-filter="arijit">🌟 Arijit Singh (60)</button>
+                        <button class="category-btn" data-filter="hindi">🇮🇳 Hindi Hits (100)</button>
+                        <button class="category-btn" data-filter="english">🌍 English / Pop (110)</button>
+                        <button class="category-btn" data-filter="punjabi">🔥 Punjabi (100)</button>
+                        <button class="category-btn" data-filter="haryanvi">🌾 Haryanvi (80)</button>
+                        <button class="category-btn" data-filter="ncs">🎧 EDM & Lofi (89)</button>
+                        <button class="category-btn" data-filter="liked">💜 Liked Songs</button>
+                    </div>
+
+                    <!-- Quick Access 6-Grid -->
+                    <div class="quick-grid" id="quickGrid">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <!-- Shelf 1: Arijit Singh Special -->
+                    <section class="shelf" id="shelf-arijit">
+                        <div class="shelf-header">
+                            <div>
+                                <h2>🌟 Arijit Singh Mega Hits</h2>
+                                <p class="shelf-sub">The ultimate collection of romantic, soulful & emotional masterpieces</p>
+                            </div>
+                            <button class="show-all" data-filter="arijit">Show all (60)</button>
+                        </div>
+                        <div class="card-grid" id="grid-arijit"></div>
+                    </section>
+
+                    <!-- Shelf 2: Bollywood & Hindi Hits -->
+                    <section class="shelf" id="shelf-hindi">
+                        <div class="shelf-header">
+                            <div>
+                                <h2>🇮🇳 Bollywood & Hindi Blockbusters</h2>
+                                <p class="shelf-sub">All-time chartbusters, romantic classics and party anthems</p>
+                            </div>
+                            <button class="show-all" data-filter="hindi">Show all (100)</button>
+                        </div>
+                        <div class="card-grid" id="grid-hindi"></div>
+                    </section>
+
+                    <!-- Shelf 3: English & International -->
+                    <section class="shelf" id="shelf-english">
+                        <div class="shelf-header">
+                            <div>
+                                <h2>🌍 Global English & Pop Hits</h2>
+                                <p class="shelf-sub">Ed Sheeran, The Weeknd, Taylor Swift, Imagine Dragons, Dua Lipa & more</p>
+                            </div>
+                            <button class="show-all" data-filter="english">Show all (110)</button>
+                        </div>
+                        <div class="card-grid" id="grid-english"></div>
+                    </section>
+
+                    <!-- Shelf 4: Punjabi Bangers -->
+                    <section class="shelf" id="shelf-punjabi">
+                        <div class="shelf-header">
+                            <div>
+                                <h2>🔥 Punjabi Bangers</h2>
+                                <p class="shelf-sub">Diljit Dosanjh, Sidhu Moose Wala, Karan Aujla, AP Dhillon, Shubh & Honey Singh</p>
+                            </div>
+                            <button class="show-all" data-filter="punjabi">Show all (100)</button>
+                        </div>
+                        <div class="card-grid" id="grid-punjabi"></div>
+                    </section>
+
+                    <!-- Shelf 5: Haryanvi Viral Hits -->
+                    <section class="shelf" id="shelf-haryanvi">
+                        <div class="shelf-header">
+                            <div>
+                                <h2>🌾 Haryanvi Top Hits</h2>
+                                <p class="shelf-sub">52 Gaj Ka Daman, Moto, Gypsy, Masoom Sharma, Raju Punjabi & Khasa Aala Chahar</p>
+                            </div>
+                            <button class="show-all" data-filter="haryanvi">Show all (80)</button>
+                        </div>
+                        <div class="card-grid" id="grid-haryanvi"></div>
+                    </section>
+                </div>
+
+                <!-- Master Tracklist Table Section (Always available, dynamically filtered) -->
+                <section class="shelf tracklist-section">
+                    <div class="shelf-header">
+                        <div>
+                            <h2 id="tracklistHeading">All Songs (539)</h2>
+                            <p class="shelf-sub" id="tracklistSub">Click any track to play full audio</p>
+                        </div>
+                        <div class="tracklist-controls">
+                            <span class="showing-count" id="showingCount">Showing 539 songs</span>
+                        </div>
+                    </div>
+
+                    <div class="tracklist-table">
+                        <div class="table-header">
+                            <span class="col-num">#</span>
+                            <span class="col-title">Title</span>
+                            <span class="col-lang">Language / Tag</span>
+                            <span class="col-album">Album</span>
+                            <span class="col-time"><i class="fa-regular fa-clock"></i></span>
+                        </div>
+                        <div class="table-body" id="tracklist-rows">
+                            <!-- Populated dynamically by JavaScript -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Footer -->
+                <footer class="spotify-footer">
+                    <div class="footer-links">
+                        <div class="col">
+                            <h4>VibeStream</h4>
+                            <a href="#">About Us</a>
+                            <a href="#">500+ Songs Library</a>
+                            <a href="#">Sound Engine</a>
+                        </div>
+                        <div class="col">
+                            <h4>Genres</h4>
+                            <a href="#" data-filter="arijit">Arijit Singh</a>
+                            <a href="#" data-filter="hindi">Bollywood Hindi</a>
+                            <a href="#" data-filter="english">English Top Hits</a>
+                            <a href="#" data-filter="punjabi">Punjabi Bangers</a>
+                            <a href="#" data-filter="haryanvi">Haryanvi Folk</a>
+                        </div>
+                        <div class="col">
+                            <h4>Ready To Deploy</h4>
+                            <a href="#">GitHub Pages Ready</a>
+                            <a href="#">Vercel / Netlify Ready</a>
+                            <a href="#">100% Free Music Player</a>
+                        </div>
+                    </div>
+                    <div class="footer-divider"></div>
+                    <div class="footer-bottom">
+                        <span>© 2026 VibeStream • Crafted by Parth</span>
+                    </div>
+                </footer>
+            </div>
+        </main>
+    </div>
+
+    <!-- ================= BOTTOM AUDIO PLAYER BAR ================= -->
+    <footer class="player-bar">
+        <!-- Left: Now Playing Info -->
+        <div class="now-playing">
+            <img src="covers/1.svg" alt="Cover" id="currentCover" class="track-thumb">
+            <div class="track-info">
+                <span class="track-title" id="currentTitle">Tum Hi Ho</span>
+                <span class="track-artist" id="currentArtist">Arijit Singh • Aashiqui 2</span>
+            </div>
+            <button class="like-btn" id="likeBtn" title="Save to Liked Songs">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <div class="playing-bars" id="visualizer">
+                <span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <!-- Center: Playback Controls & Timeline -->
+        <div class="player-controls">
+            <div class="control-buttons">
+                <button class="btn-ctrl secondary" id="shuffleBtn" title="Shuffle (S)">
+                    <i class="fa-solid fa-shuffle"></i>
+                </button>
+                <button class="btn-ctrl" id="prevBtn" title="Previous (J)">
+                    <i class="fa-solid fa-backward-step"></i>
+                </button>
+                <button class="btn-ctrl master-play" id="masterPlay" title="Play / Pause (Space)">
+                    <i class="fa-solid fa-play"></i>
+                </button>
+                <button class="btn-ctrl" id="nextBtn" title="Next (K)">
+                    <i class="fa-solid fa-forward-step"></i>
+                </button>
+                <button class="btn-ctrl secondary" id="repeatBtn" title="Repeat (R)">
+                    <i class="fa-solid fa-repeat"></i>
+                </button>
+            </div>
+
+            <div class="timeline">
+                <span class="time-stamp" id="currentTime">0:00</span>
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                    <input type="range" min="0" max="100" value="0" id="progressSlider" class="seek-slider">
+                </div>
+                <span class="time-stamp" id="totalDuration">3:22</span>
+            </div>
+        </div>
+
+        <!-- Right: Volume & Extras -->
+        <div class="player-extras">
+            <span class="track-genre-pill" id="currentGenrePill">Romantic</span>
+            <div class="volume-control">
+                <button class="btn-extra" id="volumeBtn" title="Mute/Unmute (M)">
+                    <i class="fa-solid fa-volume-high" id="volumeIcon"></i>
+                </button>
+                <div class="volume-slider-box">
+                    <div class="volume-bar" id="volumeBar"></div>
+                    <input type="range" min="0" max="100" value="80" id="volumeSlider" class="vol-slider">
+                </div>
+            </div>
+            <button class="btn-extra" id="fullscreenBtn" title="Fullscreen"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="songs-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
